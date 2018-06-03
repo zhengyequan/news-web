@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%F:%L] %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="daily" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/daily/daily.log" />
+		<param name="Append" value="true" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%F:%L] %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="trace" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/daily/trace.log" />
+		<param name="Append" value="true" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="watcher" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="ERROR" />
+		<param name="File" value="logs/watcher.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="5MB" />
+		<param name="MaxBackupIndex" value="10" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%F:%L] %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<category name="java.sql">
+		<priority value="ERROR" />
+	</category>
+
+	<category name="net.sf.json.JSONObject">
+		<priority value="ERROR" />
+	</category>
+
+	<category name="net.sf.json.JSONArray">
+		<priority value="ERROR" />
+	</category>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="console" />
+	</root>
+
+</log4j:configuration>
